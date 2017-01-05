@@ -1,0 +1,7 @@
+---
+# artifactory.yml
+- hosts: artifactory
+  gather_facts: yes
+  become: yes
+  roles:
+    - oracle-java
