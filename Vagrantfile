@@ -12,6 +12,7 @@ end
 Vagrant.configure("2") do |config|
   hosts.each do |hostname, ipaddr|
     default = if hostname == PRIMARY_SYSTEM then true else false end
+    # need to support disabled disabled: true | false
     config.vm.define hostname, primary: default do |node|
       node.vm.box = "ubuntu/trusty64"
       node.vm.hostname = "#{hostname}"
