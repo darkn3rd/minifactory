@@ -1,0 +1,8 @@
+---
+- hosts: artifactory
+  become: true
+  tasks:
+  - name: "copy test"
+    copy:
+      src: "/vagrant/packages/jfrog-artifactory-oss-4.15.0.zip"
+      dest: "/opt/"
