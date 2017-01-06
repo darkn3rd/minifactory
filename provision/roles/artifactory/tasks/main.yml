@@ -1,37 +1,31 @@
 ---
 # tasks file for artifactory
-# - stat:
-#     path: "{{ package_path }}/{{ package_name }}"
-#   register: artpkg
-#
-# - name: "Downlaod Artifactory Package"
-#   get_url:
-#     url: "{{ package_url }}"
-#     dest: "{{ package_path }}/{{ package_name }}"
-#   when: artpkg.stat.exists is defined and artpkg.stat.exists == False
+- stat:
+    path: "{{ package_path }}/{{ package_name }}"
+  register: artpkg
 
-# - name: "Copy Artifcatory Package"
-#   copy:
-#     src: "{{ package_path }}/{{ package_name }}"
-#     dest: "/opt/{{ package_name }}"
-#   when: artpkg.stat.exists is defined and artpkg.stat.exists == True
+- name: "Downlaod Artifactory Package"
+  get_url:
+    url: "{{ package_url }}"
+    dest: "{{ package_path }}/{{ package_name }}"
+  when: artpkg.stat.exists is defined and artpkg.stat.exists == False
 
-# - unarchive:
-#     src: "{{ package_path }}/{{ package_name }}"
-#     dest: /opt
-
-- unarchive:
-    src: /vagrant/packages/jfrog-artifactory-oss-4.15.0.zip
+- name: "Unarchive Artifactory Package"
+  unarchive:
+    remote_src: true
+    src: "{{ package_path }}/{{ package_name }}"
     dest: /opt
+  when: artpkg.stat.exists is defined and artpkg.stat.exists == True
 
-# - shell: cp "{{ package_path }}/{{ package_name }}" /opt
-#
-# - unarchive:
-#     src: "{{ artpkg.stat.path }}"
-#     dest: /opt
 
-# - name: "Copy Artifcatory Package"
-#   copy:
-#     src: "{{ package_path }}/{{ package_name }}"
-#     dest: "/opt/{{ package_name }}"
-#   when: artpkg.stat.exists is defined and artpkg.stat.exists == True
+- name: "Install Package"
+  shell: ./installService.sh
+  args:
+    chdir: "/opt/{{ install_name }}/bin"
+    creates: /etc/init.d/artifactory
+
+- name: "Start Service"
+  service:
+    name: artifactory
+    state: started
+    enabled: yes

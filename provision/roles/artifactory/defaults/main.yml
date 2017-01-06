@@ -2,5 +2,6 @@
 # defaults file for artifactory
 version: 4.15.0
 package_path: /vagrant/packages
-package_name: jfrog-artifactory-oss-{{ version }}.zip
+install_name: artifactory-oss-{{ version }}
+package_name: jfrog-{{ install_name }}.zip
 package_url: https://api.bintray.com/content/jfrog/artifactory/{{ package_name }};bt_package=jfrog-artifactory-oss-zip
