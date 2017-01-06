@@ -1,8 +1,10 @@
 ---
 # artifactory.yml
 - hosts: artifactory
+  vars:
+    version: 4.15.0
   gather_facts: yes
   become: true
   roles:
     - oracle-java
-    - artifactory
+    - { role: artifactory, package_version: "{{ version }}" }
