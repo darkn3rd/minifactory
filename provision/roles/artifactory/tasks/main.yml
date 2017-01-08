@@ -1,5 +1,7 @@
 ---
 # tasks file for artifactory
+
+# Stat File To Determine if Downloaded or not
 - stat:
     path: "{{ package_path }}/{{ package_name }}"
   register: artpkg
@@ -10,6 +12,12 @@
     dest: "{{ package_path }}/{{ package_name }}"
   when: artpkg.stat.exists is defined and artpkg.stat.exists == False
 
+# Stat File Again After Download
+- stat:
+    path: "{{ package_path }}/{{ package_name }}"
+  register: artpkg
+
+# Uncompress Package to /opt
 - name: "Unarchive Artifactory Package"
   unarchive:
     remote_src: true
@@ -17,13 +25,14 @@
     dest: /opt
   when: artpkg.stat.exists is defined and artpkg.stat.exists == True
 
-
+# Install Package w/ Tomcat Using Artifactory's Scripts
 - name: "Install Package"
   shell: ./installService.sh
   args:
     chdir: "/opt/{{ install_name }}/bin"
     creates: /etc/init.d/artifactory
 
+# Start Service, configure to start up at bootup
 - name: "Start Service"
   service:
     name: artifactory
