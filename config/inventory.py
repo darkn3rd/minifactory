@@ -118,7 +118,7 @@ def get_a_ssh_config(box_name):
 
     # find line with matching hostname
     for line in open(_config).readlines():
-        ip, hostname = line.strip().split()
+        ip, hostname = line.strip().split()[0:2]
         if hostname == box_name:
             break
 
