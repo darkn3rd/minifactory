@@ -1,6 +1,6 @@
 ---
 # artifactory.yml
-- hosts: artifactory
+- hosts: artifactory.dev
   vars:
     version: 4.15.0
   gather_facts: yes
