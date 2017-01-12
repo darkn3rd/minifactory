@@ -1,0 +1,7 @@
+---
+# artifactory.yml
+- hosts: artifactory.dev
+  gather_facts: yes
+  become: true
+  roles:
+    - { role: artifactory_pro }
