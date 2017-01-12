@@ -13,5 +13,4 @@ galaxy_info:
   - development
   - system
   - web
-dependencies:
-  - common
+dependencies: []
