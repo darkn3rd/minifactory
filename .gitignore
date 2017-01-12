@@ -2,3 +2,4 @@ packages/*
 !packages/README.md
 .vagrant
 *.retry
+.DS_Store
