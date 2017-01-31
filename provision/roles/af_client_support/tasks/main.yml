@@ -1,2 +1,10 @@
 ---
 # tasks file for artifacctory_client_support
+- include: bower.yml
+  when: type == 'bower'
+- include: npm.yml
+  when: type == 'npm'
+- include: python.yml
+  when: type == 'python'
+- include: ruby.yml
+  when: type == 'ruby'
