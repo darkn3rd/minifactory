@@ -22,11 +22,15 @@ Vagrant.configure("2") do |config|
       when /artifactory/
         node.vm.provider "virtualbox" do |vbox|
           vbox.name = "#{hostname}_#{TIME}"
-          vbox.memory = 1024
+          vbox.memory = 4096
           vbox.cpus = 2
         end
       else
-        node.vm.provider("virtualbox") { |vbox| vbox.name = "#{hostname}_#{TIME}" }
+        node.vm.provider "virtualbox" do |vbox|
+          vbox.name = "#{hostname}_#{TIME}"
+          vbox.memory = 2048
+          vbox.cpus = 2
+        end
       end
 
     end

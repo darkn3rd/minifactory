@@ -1,4 +1,2 @@
 ---
 # admin:password default
-npm_auth: sekrit
-npm_email: root@artifactory.dev
