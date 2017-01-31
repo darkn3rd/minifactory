@@ -1,0 +1,13 @@
+---
+# tasks file for rvm
+- name: Download RVM Install Script
+  get_url:
+    url: "{{ rvm_url }}"
+    dest: /tmp/rvm_installer
+
+- name: Execute the RVM Installer
+  script: /tmp/rvm_installer
+
+# curl -sSL https://get.rvm.io | bash
+# source /home/vagrant/.rvm/scripts/rvm
+# rvm install

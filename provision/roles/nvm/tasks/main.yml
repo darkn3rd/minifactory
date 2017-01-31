@@ -1,0 +1,15 @@
+---
+# tasks file for nvm
+- name: Download NVM Installer
+  get_url:
+    url: "{{ nvm_url }}"
+    dest: /tmp/install.sh
+
+# install nvm
+- name: Execute the NVM Installer
+  script: /tmp/install.sh
+
+# source nvm
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# install nvm
+#if nvm nvm install node

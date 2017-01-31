@@ -1,0 +1,16 @@
+---
+af_srvr: "{{ hostvars[\"artifactory.dev\"].ansible_ssh_host }}"
+af_port: 8081
+af_base_url: "http://{{ af_srvr }}:{{ af_port }}"
+
+bower_remote_repo: bower-remote
+bower_url: "{{ af_base_url }}/artifactory/api/bower/{{ bower-remote }}"
+
+python_remote_repo: python-remote
+python_url: "{{ af_base_url }}/artifactory/api/pypi/{{ python_remote_repo }}/simple"
+
+npm_remote_repo: npm-remote
+npm_url:  "{{ af_base_url }}/artifactory/api/npm/{{ npm_remote_repo }}"
+
+gem_remote_repo: gem-remote
+gem_url: "{{ af_base_url }}/artifactory/api/gems/{{ gem_remote_repo }}"
