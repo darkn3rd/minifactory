@@ -19,7 +19,7 @@
 
 ###### INSTALL RUBY
 - name: Install Latest Ruby
-  shell: "source {{ rvm_lib }} && rvm install ruby --latest"
+  shell: "source {{ rvm_lib }} && rvm install ruby"
   args:
     executable: /bin/bash
   when: rvm_lib_script.stat.size != 0

@@ -3,6 +3,9 @@
 - hosts: client.dev
   gather_facts: yes
   roles:
-    - { role: pip, beocme: true }
-    - { role: nvm, beocme: false }
-    - { role: rvm, beocme: false }
+    - { role: pip, become: true }
+    - { role: nvm, become: false }
+    - { role: rvm, become: false }
+    - { role: af_client_support, become: false, type: pip }
+    - { role: af_client_support, become: false, type: npm }
+    - { role: af_client_support, become: false, type: bower_nvm }

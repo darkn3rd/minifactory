@@ -1,0 +1,4 @@
+---
+#### CONFIGURE GEM ARTIFACTORY SUPPORT
+- name: Add New Gem Source
+  shell: gem sources -a "{{ gem_url }}"
