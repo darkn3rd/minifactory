@@ -1,15 +1,27 @@
 ---
 # tasks file for nvm
-- name: Download NVM Installer
+- name: Download NVM Installer Script
   get_url:
     url: "{{ nvm_url }}"
     dest: /tmp/install.sh
+    mode: 0555
 
 # install nvm
-- name: Execute the NVM Installer
-  script: /tmp/install.sh
+- name: Install NVM using NVM Installer Script
+  command: /tmp/install.sh
+  args:
+    creates: "{{ nvm_lib }}"
 
-# source nvm
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# install nvm
-#if nvm nvm install node
+- name: Test for NVM Script Library
+  stat:
+    path: "{{ nvm_lib }}"
+  register: nvm_lib_script
+
+- debug:
+    var: nvm_lib_script
+
+- name: Install Latest Node
+  shell: "source {{ nvm_lib }} && nvm install node"
+  args:
+    executable: /bin/bash
+  when: nvm_lib_script.stat.size != 0
