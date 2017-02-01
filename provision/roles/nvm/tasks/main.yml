@@ -1,12 +1,12 @@
 ---
-# tasks file for nvm
+###### DOWNLOADE NVM INSTALLER
 - name: Download NVM Installer Script
   get_url:
     url: "{{ nvm_url }}"
     dest: /tmp/install.sh
     mode: 0555
 
-# install nvm
+###### INSTALL NVM
 - name: Install NVM using NVM Installer Script
   command: /tmp/install.sh
   args:
@@ -17,9 +17,7 @@
     path: "{{ nvm_lib }}"
   register: nvm_lib_script
 
-- debug:
-    var: nvm_lib_script
-
+###### INSTALL NODE
 - name: Install Latest Node
   shell: "source {{ nvm_lib }} && nvm install node"
   args:

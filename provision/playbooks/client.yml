@@ -1,0 +1,8 @@
+---
+# common.yml
+- hosts: client.dev
+  gather_facts: yes
+  roles:
+    - { role: pip, beocme: true }
+    - { role: nvm, beocme: false }
+    - { role: rvm, beocme: false }
