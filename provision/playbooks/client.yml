@@ -9,3 +9,4 @@
     - { role: af_client_support, become: false, type: pip }
     - { role: af_client_support, become: false, type: npm }
     - { role: af_client_support, become: false, type: bower_nvm }
+    - { role: af_client_support, become: false, type: gem_rvm }

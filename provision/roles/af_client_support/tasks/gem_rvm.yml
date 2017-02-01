@@ -1,0 +1,12 @@
+---
+#### CONFIGURE GEM ARTIFACTORY SUPPORT
+- name: Test for RVM Script Library
+  stat:
+    path: "{{ rvm_lib }}"
+  register: rvm_lib_script
+
+- name: Add New Gem Source
+  shell: "source {{ rvm_lib }} && gem source -a {{ gem_url }}"
+  args:
+    executable: /bin/bash
+  when: rvm_lib_script.stat.size != 0
