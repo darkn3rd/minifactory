@@ -1,10 +1,6 @@
 ---
-# tasks file for artifacctory_client_support
-
-# GET AUTH - Verify if absolutely needed
-# curl -u<USERNAME>:<PASSWORD> http://172.16.0.48:8081/artifactory/api/npm/auth
-
+#### CONFIGURE NPM ARTIFACTORY SUPPORT
 - name: Configure NPM Client
   template:
     src: npmrc.j2
-    dest: "{{ ansible_ssh_user }}/.npmrc"
+    dest: "/home/{{ ansible_ssh_user }}/.npmrc"

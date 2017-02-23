@@ -18,3 +18,10 @@
 - name: Install pip
   easy_install: name=pip state=latest
   when: pip.rc >= 1
+
+- name: Update Latest Pip & Setuptools
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - pip
+    - setuptools

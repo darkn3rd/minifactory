@@ -1,13 +1,25 @@
 ---
-# tasks file for rvm
+###### DOWNLOAD RVM INSTALLER
 - name: Download RVM Install Script
   get_url:
     url: "{{ rvm_url }}"
     dest: /tmp/rvm_installer
+    mode: 0555
 
-- name: Execute the RVM Installer
-  script: /tmp/rvm_installer
+###### INSTALL RVM
+- name: Install RVM
+  command: /tmp/rvm_installer
+  args:
+    creates: "{{ rvm_lib }}"
 
-# curl -sSL https://get.rvm.io | bash
-# source /home/vagrant/.rvm/scripts/rvm
-# rvm install
+- name: Test for RVM Script Library
+  stat:
+    path: "{{ rvm_lib }}"
+  register: rvm_lib_script
+
+###### INSTALL RUBY
+- name: Install Latest Ruby
+  shell: "source {{ rvm_lib }} && rvm install ruby"
+  args:
+    executable: /bin/bash
+  when: rvm_lib_script.stat.size != 0

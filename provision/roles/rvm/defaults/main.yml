@@ -1,2 +1,5 @@
 ---
 # defaults file for rvm
+rvm_url: https://get.rvm.io
+rvm_dir: "/home/{{ ansible_ssh_user }}/.rvm"
+rvm_lib: "{{ rvm_dir }}/scripts/rvm"

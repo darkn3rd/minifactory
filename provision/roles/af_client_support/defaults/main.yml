@@ -4,13 +4,16 @@ af_port: 8081
 af_base_url: "http://{{ af_srvr }}:{{ af_port }}"
 
 bower_remote_repo: bower-remote
-bower_url: "{{ af_base_url }}/artifactory/api/bower/{{ bower-remote }}"
+bower_url: "{{ af_base_url }}/artifactory/api/bower/{{ bower_remote_repo }}"
 
 python_remote_repo: python-remote
 python_url: "{{ af_base_url }}/artifactory/api/pypi/{{ python_remote_repo }}/simple"
 
 npm_remote_repo: npm-remote
-npm_url:  "{{ af_base_url }}/artifactory/api/npm/{{ npm_remote_repo }}"
+npm_url:  "{{ af_base_url }}/artifactory/api/npm/{{ npm_remote_repo }}/"
 
 gem_remote_repo: gem-remote
-gem_url: "{{ af_base_url }}/artifactory/api/gems/{{ gem_remote_repo }}"
+gem_url: "{{ af_base_url }}/artifactory/api/gems/{{ gem_remote_repo }}/"
+
+nvm_dir: "/home/{{ ansible_ssh_user }}/.nvm"
+nvm_lib: "{{ nvm_dir }}/nvm.sh"

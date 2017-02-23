@@ -1,3 +1,0 @@
----
-- name: Add New Gem Source
-  shell: gem source -a "{{ gem_url }}"
