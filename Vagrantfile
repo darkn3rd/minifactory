@@ -4,6 +4,7 @@ CONFIGFILE_HOSTS = "./config/#{APP_ENV}.hosts"
 
 hosts = {}  # empty data-structure
 File.readlines(CONFIGFILE_HOSTS).map(&:chomp).each do |line|
+  next if line =~ /^#/                             # skip comment lines
   ipaddr, hostname = line.split(/\s+/)             # only grab first two columns
   hosts[hostname] = ipaddr                         # store in hash
   PRIMARY_SYSTEM = hostname if (line =~ /primary/) # match primary

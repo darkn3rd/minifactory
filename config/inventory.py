@@ -98,6 +98,7 @@ def get_ssh_config():
 
     # build hostvars dictionary from global hosts file
     for line in open(_config).readlines():
+        if line.startswith('#'): continue
         # strip first two items, discard rest
         ip, hostname = line.strip().split()[0:2]
         ansible_config = {}
@@ -118,6 +119,8 @@ def get_a_ssh_config(box_name):
 
     # find line with matching hostname
     for line in open(_config).readlines():
+        if line.startswith('#'): continue
+        # strip first two items, discard rest
         ip, hostname = line.strip().split()[0:2]
         if hostname == box_name:
             break
