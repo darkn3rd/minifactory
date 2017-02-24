@@ -12,8 +12,11 @@ python_url: "{{ af_base_url }}/artifactory/api/pypi/{{ python_remote_repo }}/sim
 npm_remote_repo: npm-remote
 npm_url:  "{{ af_base_url }}/artifactory/api/npm/{{ npm_remote_repo }}/"
 
-gem_remote_repo: gem-remote
+gem_remote_repo: gems-remote
 gem_url: "{{ af_base_url }}/artifactory/api/gems/{{ gem_remote_repo }}/"
 
 nvm_dir: "/home/{{ ansible_ssh_user }}/.nvm"
 nvm_lib: "{{ nvm_dir }}/nvm.sh"
+
+deb_remote_repo: debian-remote
+deb_source: "deb http://{{ af_srvr }}:8081/artifactory/debian-remote {{ ansible_distribution_release }} main"
