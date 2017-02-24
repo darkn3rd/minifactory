@@ -1,4 +1,4 @@
 #!/usr/bin/env ansible-playbook
 # site.yml: site-wide playbook
 - include: playbooks/common.yml
-- include: playbooks/artifactory.yml
+- include: playbooks/artifactory_pro.yml

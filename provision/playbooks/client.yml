@@ -3,6 +3,8 @@
 - hosts: client.dev
   gather_facts: yes
   roles:
+    - { role: af_client_support, become: true, type: ubuntu_deb }
+    - { role: docker, become: true }
     - { role: pip, become: true }
     - { role: nvm, become: false }
     - { role: rvm, become: false }

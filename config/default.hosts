@@ -1,2 +1,3 @@
 172.16.0.48 artifactory.dev primary
 172.16.0.49 client.dev disabled
+#172.16.0.50 client2.dev
