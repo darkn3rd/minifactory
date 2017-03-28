@@ -4,4 +4,4 @@
   gather_facts: yes
   become: true
   roles:
-    - { role: artifactory_pro }
+    - { role: artifactory_pro, type: oss }

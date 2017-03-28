@@ -1,22 +1,22 @@
 ---
-# Add JFrog's Repository
-- name: Add JFrog Artifactory Repository
-  become: true
-  apt_repository:
-    repo: deb https://jfrog.bintray.com/artifactory-pro-debs {{ ansible_distribution_release }} main
-    state: present
-    filename: jfrog
-
 # Add JFrog's Public Key required for installing packages from JFrog
 - name: Add JFrog Public Key
   apt_key:
     url: https://bintray.com/user/downloadSubjectPublicKey?username=jfrog
     state: present
 
+# Add JFrog's Repository
+- name: Add JFrog Artifactory Repository
+  become: true
+  apt_repository:
+    repo: "deb {{ debsource[type] }} {{ ansible_distribution_release }} main"
+    state: present
+    filename: jfrog
+
 # Update Cache to get package list and install Artifactory Pro
 - name: Install JFrog Artifactory Pro
   apt:
-    name: jfrog-artifactory-pro
+    name: "jfrog-artifactory-{{ type }}"
     state: latest
     update_cache: yes
 
