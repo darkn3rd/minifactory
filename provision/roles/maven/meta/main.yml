@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Joaquin Menchaca
+  description: Downloads and installs Maven
+  company: Joaquin Menchaca
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  galaxy_tags:
+  - development
+  - system
+  - web
+  - vagrant
+dependencies:
+  - oracle-java

@@ -1,0 +1,11 @@
+---
+# defaults file for maven
+package_version: 3.3.9
+package_path: /vagrant/packages
+# location where it is installed
+install_name: "apache-maven-{{ package_version }}"
+base_dir: "/opt/{{ install_name }}"
+priority: 150
+# pack name to download
+package_name: "apache-maven-{{ package_version }}-bin.tar.gz"
+package_url: "http://apache.mesi.com.ar/maven/maven-3/{{ package_version }}/binaries/{{ package_name }}"

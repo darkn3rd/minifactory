@@ -1,0 +1,57 @@
+---
+- name: "Remove Alternative Links to MVN Executables"
+  shell: >
+    /usr/bin/update-alternatives
+    --remove mvn /usr/share/maven/bin/mvn
+
+- name: "Stat File To Determine if Downloaded or not"
+  stat:
+    path: "{{ package_path }}/{{ package_name }}"
+  register: mvnpkg
+
+- name: "Downlaod Maven Package"
+  get_url:
+    url: "{{ package_url }}"
+    dest: "{{ package_path }}/{{ package_name }}"
+  when: mvnpkg.stat.exists is defined and mvnpkg.stat.exists == False
+
+- name: Stat File Again After Download
+  stat:
+    path: "{{ package_path }}/{{ package_name }}"
+  register: mvnpkg
+
+- name: "Unarchive Maven Package"
+  unarchive:
+    remote_src: true
+    src: "{{ package_path }}/{{ package_name }}"
+    dest: /opt
+  when: mvnpkg.stat.exists is defined and mvnpkg.stat.exists == True
+
+- name: "Create Maven Config Directory"
+  file:
+    path: /etc/maven
+    state: directory
+    mode: 0755
+
+- name: "Link Maven Config Files"
+  file:
+    src: '{{ base_dir }}/{{ item.src }}'
+    dest: '{{ item.dest }}'
+    state: link
+  with_items:
+    - { src: 'bin/m2.conf', dest: '/etc/maven/m2.conf' }
+    - { src: 'conf/settings.xml', dest: '/etc/maven/settings.xml' }
+
+- name: "Maven Bash Completion"
+  copy:
+    src: maven
+    dest: /etc/bash_completion.d/maven
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Create Alternative Links to MVN Executables"
+  shell: >
+    /usr/bin/update-alternatives
+    --install /usr/bin/mvn mvn {{ base_dir }}/bin/mvn {{ priority }}
+    --slave /usr/bin/mvnDebug mvnDebug {{ base_dir }}/bin/mvnDebug
