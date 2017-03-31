@@ -1,0 +1,17 @@
+---
+# common.yml
+- hosts: client.dev
+  vars:
+    maven_version: 3.3.9
+  gather_facts: yes
+  roles:
+   - { role: af_client_support, become: true, type: ubuntu_deb }
+   - { role: docker, become: true }
+   - { role: pip, become: true }
+   - { role: nvm, become: false }
+   - { role: rvm, become: false }
+   - { role: maven, package_version: "{{ maven_version }}", package_path: "/vagrant/packages", become: true }
+   - { role: af_client_support, become: false, type: pip }
+   - { role: af_client_support, become: false, type: npm }
+   - { role: af_client_support, become: false, type: bower_nvm }
+   - { role: af_client_support, become: false, type: gem_rvm }

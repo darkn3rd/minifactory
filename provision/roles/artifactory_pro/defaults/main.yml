@@ -1,9 +1,0 @@
----
-# defaults file for artifactory
-type: pro
-debsource:
-  pro: https://jfrog.bintray.com/artifactory-pro-debs
-  oss: https://jfrog.bintray.com/artifactory-debs
-package:
-  pro: jfrog-artifactory-pro
-  oss: jfrog-artifactory-oss

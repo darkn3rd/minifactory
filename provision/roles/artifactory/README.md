@@ -1,19 +1,17 @@
 Artifactory
 =========
 
-Downloads and Installs [Artifactory OSS](https://www.jfrog.com/open-source/) using their installer script.
+Installs [Artifactory OSS](https://www.jfrog.com/open-source/) or [Artifactory Pro](https://www.jfrog.com/confluence/display/RTF/Installing+on+Linux+Solaris+or+Mac+OS) using Debian package.
 
 Requirements
 ------------
 
 - Java 8.x installed.
-- Internet Access to download and install Artifactory
+- Internet Access to download and install Artifactory package (OSS or Pro)
 
 Role Variables
 --------------
-
-- `package_version` is set to desired target version
-- `package_path` set to `/vagrant/packages` for local spot to save packages.  This should be overidden for non-vagrant systems.
+No variables, this just grabs the latest and greatest.
 
 Dependencies
 ------------
@@ -24,12 +22,11 @@ Example Playbook
 ----------------
 
 ```yaml
-- hosts: artifactory
-  vars:
-    version: 4.15.0
+- hosts: artifactory.dev
+  gather_facts: yes
   become: true
   roles:
-    - { role: artifactory, package_version: "{{ version }}" }
+    - { role: artifactory }
 ```
 
 

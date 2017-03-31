@@ -8,9 +8,28 @@ This is a basic [Artifactory OSS](https://www.jfrog.com/open-source/) installati
 
 Assuming [Vagrant](https://www.vagrantup.com/),  [Virtualbox](https://www.virtualbox.org/wiki/Downloads), and [Ansible](http://docs.ansible.com/ansible/intro_installation.html) are installed<sup>†</sup>, do the following:
 
+### **Open Source Version**
+
 ```bash
 # bring up virtual guests (1.5gb)
 vagrant up
+# provision system, install artifactory
+./provision/site.yml
+```
+
+
+### **Professional Version**
+
+If you have a license and want to install Artifactory Pro, you can update symlinks and provision the systems:
+
+```bash
+# bring up virtual guests (1.5gb)
+vagrant up
+# reset symlinks
+pushd . && cd provision/playbooks
+ln -sf artifactory_pro.yml artifactory.yml
+ln -sf client_pro.yml client.yml
+popd
 # provision system, install artifactory
 ./provision/site.yml
 ```

@@ -1,0 +1,8 @@
+---
+# common.yml
+- hosts: client.dev
+  vars:
+    maven_version: 3.3.9
+  gather_facts: yes
+  roles:
+    - { role: maven, package_version: "{{ maven_version }}", package_path: "/vagrant/packages", become: true }

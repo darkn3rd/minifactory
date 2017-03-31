@@ -1,9 +1,1 @@
----
-# artifactory.yml
-- hosts: artifactory.dev
-  vars:
-    version: 4.15.0
-  gather_facts: yes
-  become: true
-  roles:
-    - { role: artifactory, package_version: "{{ version }}" }
+artifactory_oss.yml

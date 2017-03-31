@@ -1,5 +1,5 @@
 - name: Add Artifactory Debian Repo
   become: true
   apt_repository:
-    repo: {{ deb_source }}
+    repo: "{{ deb_source }}"
     state: present
