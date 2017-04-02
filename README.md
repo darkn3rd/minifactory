@@ -25,21 +25,7 @@ If you have a license and want to install Artifactory Pro, you can update symlin
 ```bash
 # bring up virtual guests (1.5gb)
 vagrant up
-# reset symlinks
-pushd . && cd provision/playbooks
-ln -sf artifactory_pro.yml artifactory.yml
-ln -sf client_pro.yml client.yml
-popd
 # provision system, install artifactory
-# bring up virtual guests (1.5gb)
-vagrant up
-# reset symlinks
-pushd . && cd provision/playbooks
-ln -sf artifactory_pro.yml artifactory.yml
-ln -sf client_pro.yml client.yml
-popd
-# provision system, install artifactory
-./provision/site.yml
 ansible-playbook provision/site.yml -e type=pro
 ```
 
