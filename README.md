@@ -31,7 +31,16 @@ ln -sf artifactory_pro.yml artifactory.yml
 ln -sf client_pro.yml client.yml
 popd
 # provision system, install artifactory
+# bring up virtual guests (1.5gb)
+vagrant up
+# reset symlinks
+pushd . && cd provision/playbooks
+ln -sf artifactory_pro.yml artifactory.yml
+ln -sf client_pro.yml client.yml
+popd
+# provision system, install artifactory
 ./provision/site.yml
+ansible-playbook provision/site.yml -e type=pro
 ```
 
 † Run `./install.sh` on Mac OS X for installing aforementioned components using [Homebrew](http://brew.sh/), [Cask](https://caskroom.github.io/), and [Brew Bundle](https://github.com/Homebrew/homebrew-bundle).
