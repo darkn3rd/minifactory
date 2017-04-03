@@ -1,1 +1,5 @@
-client_oss.yml
+---
+# common.yml
+- vars:
+    type: oss
+  include: "client_{{ type }}.yml"
