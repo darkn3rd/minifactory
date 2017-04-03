@@ -1,0 +1,83 @@
+{
+  "key" : "{{ item.key }}",
+  "packageType" : "{{ item.value['packageType'] }}",
+  "description" : "{{ item.value['description'] | default('') }}",
+  "notes" :  "{{ item.value['notes'] | default('') }}",
+  "includesPattern" : "**/*",
+  "excludesPattern" : "",
+  "repoLayoutRef" : "{{ item.value['repoLayoutRef'] | default('simple-default') }}",
+  "enableComposerSupport" : {{ item.value['enableComposerSupport'] | default('false') }},
+  "enableNuGetSupport" : {{ item.value['enableNuGetSupport'] | default('false') }},
+  "enableGemsSupport" : {{ item.value['enableGemsSupport'] | default('false') }},
+  "enableNpmSupport" : {{ item.value['enableNpmSupport'] | default('false') }},
+  "enableBowerSupport" : {{ item.value['enableBowerSupport'] | default('false') }},
+  "enableCocoaPodsSupport" : {{ item.value['enableCocoaPodsSupport'] | default('false') }},
+  "enableConanSupport" : {{ item.value['enableConanSupport'] | default('false') }},
+  "enableDebianSupport" : {{ item.value['enableDebianSupport'] | default('false') }},
+  "debianTrivialLayout" : {{ item.value['debianTrivialLayout'] | default('false') }},
+  "enablePypiSupport" : {{ item.value['enablePypiSupport'] | default('false') }},
+  "enablePuppetSupport" : {{ item.value['enablePuppetSupport'] | default('false') }},
+  "enableDockerSupport" : {{ item.value['enableDockerSupport'] | default('false') }},
+  "dockerApiVersion" : "V2",
+  "forceNugetAuthentication" : {{ item.value['forceNugetAuthentication'] | default('false') }},
+  "enableVagrantSupport" : {{ item.value['enableVagrantSupport'] | default('false') }},
+  "enableGitLfsSupport" : {{ item.value['enableGitLfsSupport'] | default('false') }},
+  "enableDistRepoSupport" : {{ item.value['enableDistRepoSupport'] | default('false') }},
+  "url" : "{{ item.value['url'] }}",
+  "username" : "{{ item.value['username'] | default('') }}",
+  "password" : "",
+  "handleReleases" : true,
+  "handleSnapshots" : true,
+  "suppressPomConsistencyChecks" : true,
+  "remoteRepoChecksumPolicyType" : "",
+  "hardFail" : {{ item.value['hardFail'] | default('false') }},
+  "offline" : {{ item.value['offline'] | default('false') }},
+  "blackedOut" : {{ item.value['blackedOut'] | default('false') }},
+  "storeArtifactsLocally" : true,
+  "socketTimeoutMillis" : 15000,
+  "localAddress" : "",
+  "retrievalCachePeriodSecs" : 600,
+  "assumedOfflinePeriodSecs" : 300,
+  "missedRetrievalCachePeriodSecs" : 1800,
+  "unusedArtifactsCleanupPeriodHours" : 0,
+  "fetchJarsEagerly" : {{ item.value['fetchJarsEagerly'] | default('false') }},
+  "fetchSourcesEagerly" : {{ item.value['fetchSourcesEagerly'] | default('false') }},
+  "shareConfiguration" : {{ item.value['shareConfiguration'] | default('false') }},
+  "synchronizeProperties" : {{ item.value['synchronizeProperties'] | default('false') }},
+  "maxUniqueSnapshots" : 0,
+  "maxUniqueTags" : 0,
+  "propertySets" : [ ],
+  "archiveBrowsingEnabled" : {{ item.value['archiveBrowsingEnabled'] | default('false') }},
+  "listRemoteFolderItems" : {{ item.value['listRemoteFolderItems'] | default('false') }},
+  "rejectInvalidJars" : {{ item.value['rejectInvalidJars'] | default('false') }},
+  "allowAnyHostAuth" : {{ item.value['allowAnyHostAuth'] | default('false') }},
+  "enableCookieManagement" : {{ item.value['enableCookieManagement'] | default('false') }},
+  "enableTokenAuthentication" : {{ item.value['enableTokenAuthentication'] | default('false') }},
+  "propagateQueryParams" : {{ item.value['propagateQueryParams'] | default('false') }},
+  "blockMismatchingMimeTypes" : {{ item.value['blockMismatchingMimeTypes'] | default('true') }},
+  "mismatchingMimeTypesOverrideList" : "",
+  "contentSynchronisation" : {
+    "enabled" : false,
+    "statistics" : {
+      "enabled" : false
+    },
+    "properties" : {
+      "enabled" : false
+    },
+    "source" : {
+      "originAbsenceDetection" : false
+    }
+  },
+{% if item.value['packageType'] == "bower" %}
+  "vcsType" : "{{ item.value['vcsType'] }}",
+  "bowerRegistryUrl" : "{{ item.value['bowerRegistryUrl'] }}",
+{% endif %}
+  "xrayIndex" : {{ item.value['xrayIndex'] | default('false') }},
+  "xrayMinimumBlockedSeverity" : "",
+  "blockXrayUnscannedArtifacts" : {{ item.value['blockXrayUnscannedArtifacts'] | default('false') }},
+{% if item.value['packageType'] == "bower" %}
+  "vcsGitProvider" : "{{ item.value['vcsGitProvider'] }}",
+{% endif %}
+  "enabledChefSupport" : {{ item.value['enabledChefSupport'] | default('false') }},
+  "rclass" : "remote"
+}

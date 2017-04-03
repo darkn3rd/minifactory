@@ -1,0 +1,144 @@
+---
+##################################################################
+# Remote Repositories
+##################################################################
+remote_repo:
+  bintray-docker-remote:
+    packageType: docker
+    enableDockerSupport: 'true'
+    url: https://docker.bintray.io
+    enableTokenAuthentication: 'true'
+  bower-remote:
+    packageType: bower
+    enableBowerSupport: 'true'
+    url: https://github.com/
+    repoLayoutRef: bower-default
+    vcsType: GIT
+    bowerRegistryUrl: https://bower.herokuapp.com
+    vcsGitProvider: GITHUB
+  debian-remote:
+    packageType: debian
+    enableDebianSupport: 'true'
+    url: http://archive.ubuntu.com/ubuntu/
+    listRemoteFolderItems: 'true'
+  docker-remote:
+    packageType: docker
+    enableDockerSupport: 'true'
+    url: https://registry-1.docker.io/
+    enableTokenAuthentication: 'true'
+  gems-remote:
+    packageType: gems
+    enableGemsSupport: 'true'
+    url: https://rubygems.org/
+  npm-remote:
+    packageType: npm
+    enableNpmSupport: 'true'
+    url: https://registry.npmjs.org
+    repoLayoutRef: npm-default
+  pypi-remote:
+    packageType: pypi
+    enablePypiSupport: 'true'
+    url: https://pypi.python.org
+  jcenter:
+    packageType: maven
+    url: https://jcenter.bintray.com
+    repoLayoutRef: maven-2-default
+    listRemoteFolderItems: 'true'
+    suppressPomConsistencyChecks: 'false'
+
+##################################################################
+# Local Repositories
+##################################################################
+local_repo:
+  bower-local:
+    packageType: bower
+    enableBowerSupport: 'true'
+    repoLayoutRef: bower-default
+  debian-local:
+    packageType: debian
+    enableDebianSupport: 'true'
+  docker-local:
+    packageType: docker
+    enableDockerSupport: 'true'
+  gems-local:
+    packageType: gems
+    enableGemsSupport: 'true'
+  libs-release-local:
+    packageType: maven
+    repoLayoutRef: maven-2-default
+    handleReleases: 'true'
+    handleSnapshots: 'false'
+    suppressPomConsistencyChecks: 'false'
+  libs-snapshot-local:
+    packageType: maven
+    repoLayoutRef: maven-2-default
+    handleReleases: 'false'
+    handleSnapshots: 'true'
+    suppressPomConsistencyChecks: 'false'
+  npm-local:
+    packageType: npm
+    repoLayoutRef: npm-default
+    enableNpmSupport: 'true'
+  pypi-local:
+    packageType: pypi
+    enablePypiSupport: 'true'
+  vagrant-local:
+    packageType: vagrant
+    enableVagrantSupport: 'true'
+
+##################################################################
+# Virtual Repositories
+##################################################################
+virtual_repo:
+  bower:
+    packageType: bower
+    enableBowerSupport: 'true'
+    repoLayoutRef: bower-default
+    repositories:
+      - bower-local
+      - bower-remote
+    defaultDeploymentRepo: bower-local
+  docker:
+    packageType: docker
+    enableDockerSupport: 'true'
+    repositories:
+      - docker-local
+      - bintray-docker-remote
+      - docker-remote
+    defaultDeploymentRepo: docker-local
+  gems:
+    packageType: gems
+    enableGemsSupport: 'true'
+    repositories:
+      - gems-local
+      - gems-remote
+    defaultDeploymentRepo: gems-local
+  libs-release:
+    packageType: maven
+    repoLayoutRef: maven-2-default
+    repositories:
+      - libs-release-local
+      - jcenter
+    defaultDeploymentRepo: libs-release-local
+  libs-snapshot:
+    packageType: maven
+    repoLayoutRef: maven-2-default
+    repositories:
+      - libs-snapshot-local
+      - jcenter
+    defaultDeploymentRepo: libs-snapshot-local
+  npm:
+    packageType: npm
+    repoLayoutRef: npm-default
+    enableNpmSupport: 'true'
+    repositories:
+      - npm-local
+      - npm-remote
+    defaultDeploymentRepo: npm-local
+  pypi:
+    packageType: pypi
+    enablePypiSupport: 'true'
+    repositories:
+      - pypi-local
+      - pypi-remote
+    defaultDeploymentRepo: pypi-local

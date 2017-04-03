@@ -1,0 +1,21 @@
+---
+- name: Include Repository Key/Values
+  include_vars: repos.yml
+
+- name: Test Local JSONs
+  template:
+    src: local_repo.json.j2
+    dest: "/tmp/local/{{ item.key }}.json"
+  with_dict: "{{ local_repo }}"
+
+- name: Test Remote JSONs
+  template:
+    src: remote_repo.json.j2
+    dest: "/tmp/remote/{{ item.key }}.json"
+  with_dict: "{{ remote_repo }}"
+
+- name: Test Virtual JSONs
+  template:
+    src: virtual_repo.json.j2
+    dest: "/tmp/virtual/{{ item.key }}.json"
+  with_dict: "{{ virtual_repo }}"
