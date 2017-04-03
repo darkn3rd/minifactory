@@ -1,2 +1,6 @@
 ---
 # defaults file for rt_conf
+artifactory_admin:
+  user: admin
+  password: password
+artifactory_port: 8081
