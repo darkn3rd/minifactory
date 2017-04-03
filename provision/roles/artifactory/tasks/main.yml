@@ -14,7 +14,7 @@
     filename: jfrog
 
 # Update Cache to get package list and install Artifactory Pro
-- name: Install JFrog Artifactory
+- name: Install JFrog Artifactory {{ type }}
   apt:
     name: "jfrog-artifactory-{{ type }}"
     state: latest
