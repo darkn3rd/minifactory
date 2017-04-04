@@ -1,38 +1,44 @@
+##################################################################
+# NOTES:
+#   - 200 is sucess
+#   - 400 is exists already, either way it is ok
+##################################################################
+
 - name: Include Repository Key/Values
   include_vars: repos.yml
 
+##################################################################
+# Local Repositories
+##################################################################
 - name: Create Local Repositories
   uri:
-    url: http://{{ ansible_host }}:{{ artifactory_port }}/artifactory/api/repositories/{{ item.key }}
-    method: POST
-    user: "{{ artifactory_admin.user }}"
-    passwd: "{{ artifactory_admin.password }}"
+    url:  "{{ rt_url }}/{{ rt_route.repositories }}/{{ item.key }}"
+    method: PUT
     body: "{{ lookup('template','local_repo.json.j2') }}"
-    force_basic_auth: yes
-    status_code: 200
+    status_code: 200, 400
     body_format: json
   with_dict: "{{ local_repo }}"
 
+##################################################################
+# Remote Repositories
+##################################################################
 - name: Create Remote Repositories
   uri:
-    url: http://{{ ansible_host }}:{{ artifactory_port }}/artifactory/api/repositories/{{ item.key }}
-    method: POST
-    user: "{{ artifactory_admin.user }}"
-    passwd: "{{ artifactory_admin.password }}"
+    url: "{{ rt_url }}/{{ rt_route.repositories }}/{{ item.key }}"
+    method: PUT
     body: "{{ lookup('template','remote_repo.json.j2') }}"
-    force_basic_auth: yes
-    status_code: 200
+    status_code: 200, 400
     body_format: json
   with_dict: "{{ remote_repo }}"
 
+##################################################################
+# Virtual Repositories
+##################################################################
 - name: Create Virtual Repositories
   uri:
-    url: http://{{ ansible_host }}:{{ artifactory_port }}/artifactory/api/repositories/{{ item.key }}
-    method: POST
-    user: "{{ artifactory_admin.user }}"
-    passwd: "{{ artifactory_admin.password }}"
+    url:  "{{ rt_url }}/{{ rt_route.repositories }}/{{ item.key }}"
+    method: PUT
     body: "{{ lookup('template','virtual_repo.json.j2') }}"
-    force_basic_auth: yes
-    status_code: 200
+    status_code: 200, 400
     body_format: json
   with_dict: "{{ virtual_repo }}"

@@ -1,2 +1,3 @@
 ---
+- include: license.yml
 - include: repos.yml

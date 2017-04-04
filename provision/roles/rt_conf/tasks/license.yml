@@ -1,0 +1,7 @@
+- name: Install License
+  uri:
+    url:  "{{ rt_url }}/{{ rt_route.licenses }}"
+    method: POST
+    body: '{ "licenseKey": "{{ rt_system.license }}" }'
+    status_code: 200
+    body_format: json

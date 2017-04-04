@@ -5,4 +5,4 @@
   become: true
   roles:
     - { role: artifactory, type: oss }
-#    - { role: rt_conf }
+    - { role: rt_conf }
